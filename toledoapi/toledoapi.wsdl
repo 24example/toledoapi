@@ -1,0 +1,1455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+		xmlns:soap12bind="http://schemas.xmlsoap.org/wsdl/soap12/"
+		xmlns:soapbind="http://schemas.xmlsoap.org/wsdl/soap/"
+		xmlns:tns="http://www.toledo24.ru/webservices/ToledoAPI"
+		xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+		xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		xmlns:xsd1="http://www.toledo24.ru/webservices/ToledoAPI"
+		name="ToledoAPI"
+		targetNamespace="http://www.toledo24.ru/webservices/ToledoAPI">
+	<types>
+		<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+				xmlns:xs1="http://www.toledo24.ru/webservices/ToledoAPI"
+				targetNamespace="http://www.toledo24.ru/webservices/ToledoAPI"
+				attributeFormDefault="unqualified"
+				elementFormDefault="qualified">
+			<xs:complexType name="AddressInfo">
+				<xs:sequence>
+					<xs:element name="AddressCode"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="AddressName"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Analog">
+				<xs:sequence>
+					<xs:element name="ProductId"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="Name"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="CharacteristicId"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="CharacteristicName"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Article"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="Brand"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="BrandId"
+							type="xs:string"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="BrandInfo">
+				<xs:sequence>
+					<xs:element name="Id"
+							type="xs:string"/>
+					<xs:element name="Name"
+							type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Contract">
+				<xs:sequence>
+					<xs:element name="Name"
+							type="xs:string"/>
+					<xs:element name="UID"
+							type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="DocumentFilter">
+				<xs:sequence>
+					<xs:element name="Number"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="StartDate"
+							type="xs:dateTime"
+							minOccurs="0"/>
+					<xs:element name="EndDate"
+							type="xs:dateTime"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="DocumentInfo">
+				<xs:sequence>
+					<xs:element name="Number"
+							type="xs:string"/>
+					<xs:element name="Date"
+							type="xs:dateTime"/>
+					<xs:element name="Organization"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="TotalAmount"
+							type="xs:float"/>
+					<xs:element name="Status"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Products"
+							minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="row"
+										minOccurs="0"
+										maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="ProductId"
+													type="xs:string"/>
+											<xs:element name="ProductName"
+													type="xs:string"/>
+											<xs:element name="CharacteristicId"
+													type="xs:string"
+													nillable="true"
+													minOccurs="0"/>
+											<xs:element name="CharacteristicName"
+													type="xs:string"
+													nillable="true"
+													minOccurs="0"/>
+											<xs:element name="GTD"
+													type="xs:string"
+													nillable="true"
+													minOccurs="0"/>
+											<xs:element name="Country"
+													type="xs:string"
+													nillable="true"
+													minOccurs="0"/>
+											<xs:element name="Unit"
+													type="xs:string"/>
+											<xs:element name="Quantity"
+													type="xs:float"/>
+											<xs:element name="Price"
+													type="xs:float"/>
+											<xs:element name="Amount"
+													type="xs:float"
+													minOccurs="0"/>
+											<xs:element name="VAT_Rate"
+													type="xs:string"
+													minOccurs="0"/>
+											<xs:element name="VAT_Amount"
+													type="xs:float"
+													minOccurs="0"/>
+											<xs:element name="Multiplicity"
+													type="xs:float"/>
+											<xs:element name="OrderNumber"
+													type="xs:string"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Services"
+							nillable="true"
+							minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="row"
+										nillable="true"
+										minOccurs="0"
+										maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="ProductId"
+													type="xs:string"/>
+											<xs:element name="ProductName"
+													type="xs:string"/>
+											<xs:element name="CharacteristicId"
+													type="xs:string"
+													nillable="true"
+													minOccurs="0"/>
+											<xs:element name="CharacteristicName"
+													type="xs:string"
+													nillable="true"
+													minOccurs="0"/>
+											<xs:element name="Content"
+													type="xs:string"/>
+											<xs:element name="Quantity"
+													type="xs:float"/>
+											<xs:element name="Price"
+													type="xs:float"/>
+											<xs:element name="Amount"
+													type="xs:float"
+													minOccurs="0"/>
+											<xs:element name="VAT_Rate"
+													type="xs:string"
+													minOccurs="0"/>
+											<xs:element name="VAT_Amount"
+													type="xs:float"
+													minOccurs="0"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ExpectedReceiptReport">
+				<xs:choice>
+					<xs:element name="Records"
+							minOccurs="0"
+							maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:choice>
+								<xs:element name="Document"
+										type="xs:string"
+										minOccurs="0"/>
+								<xs:element name="DocumentId"
+										type="xs:string"
+										nillable="true"
+										minOccurs="0"/>
+								<xs:element name="ProductName"
+										type="xs:string"
+										minOccurs="0"/>
+								<xs:element name="ProductId"
+										type="xs:string"
+										minOccurs="0"/>
+								<xs:element name="Quantity"
+										type="xs:float"
+										minOccurs="0"/>
+							</xs:choice>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:complexType>
+			<xs:complexType name="Feature">
+				<xs:sequence>
+					<xs:element name="FeatureId"
+							type="xs:string"/>
+					<xs:element name="Description"
+							type="xs:string"/>
+					<xs:element name="Value"
+							type="xs:string"/>
+					<xs:element name="ValueType"
+							type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ForthcomingPayments">
+				<xs:choice>
+					<xs:element name="Contracts"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Contract"
+										type="tns:Contract"
+										minOccurs="0"/>
+								<xs:element name="Debt"
+										type="xs:float"
+										minOccurs="0"/>
+								<xs:element name="OverdueDebt"
+										type="xs:float"
+										minOccurs="0"/>
+								<xs:element name="PaymentDueDate"
+										type="xs:dateTime"
+										minOccurs="0"/>
+								<xs:element name="DaysPastDue"
+										type="xs:float"
+										minOccurs="0"/>
+								<xs:element name="Records"
+										minOccurs="0"
+										maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Date"
+													type="xs:dateTime"
+													minOccurs="0"/>
+											<xs:element name="Document"
+													type="xs:string"
+													minOccurs="0"/>
+											<xs:element name="PaymentDueDate"
+													type="xs:dateTime"
+													minOccurs="0"/>
+											<xs:element name="DaysPastDue"
+													type="xs:float"
+													minOccurs="0"/>
+											<xs:element name="Debt"
+													type="xs:float"
+													minOccurs="0"/>
+											<xs:element name="OverdueDebt"
+													type="xs:float"
+													minOccurs="0"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:complexType>
+			<xs:complexType name="OrderDetails">
+				<xs:sequence>
+					<xs:element name="ProductsToOrder"
+							type="tns:ProductsToOrder"
+							maxOccurs="unbounded"/>
+					<xs:element name="AddressCode"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="DeliveryDate"
+							type="xs:dateTime"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="ConfirmOrder"
+							type="xs:boolean"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Comment"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Number"
+							type="xs:string"
+							nillable="true"/>
+					<xs:element name="Date"
+							type="xs:dateTime"
+							nillable="true"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="OrderFilter">
+				<xs:sequence>
+					<xs:element name="Number"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="StartDate"
+							type="xs:dateTime"
+							minOccurs="0"/>
+					<xs:element name="EndDate"
+							type="xs:dateTime"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="OrderInfo">
+				<xs:sequence>
+					<xs:element name="Number"
+							type="xs:string"/>
+					<xs:element name="Date"
+							type="xs:dateTime"
+							nillable="true"/>
+					<xs:element name="Organization"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="TotalAmount"
+							type="xs:float"/>
+					<xs:element name="Comment"
+							type="xs:string"/>
+					<xs:element name="OrderStatus"
+							type="xs:string"/>
+					<xs:element name="SalesDocumentNumbers"
+							type="xs:string"
+							nillable="true"/>
+					<xs:element name="Products"
+							minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="row"
+										nillable="true"
+										minOccurs="0"
+										maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="ProductId"
+													type="xs:string"/>
+											<xs:element name="ProductName"
+													type="xs:string"
+													nillable="true"/>
+											<xs:element name="CharacteristicId"
+													type="xs:string"
+													nillable="true"
+													minOccurs="0"/>
+											<xs:element name="CharacteristicName"
+													type="xs:string"
+													nillable="true"
+													minOccurs="0"/>
+											<xs:element name="Content"
+													type="xs:string"/>
+											<xs:element name="Quantity"
+													type="xs:float"/>
+											<xs:element name="Price"
+													type="xs:float"/>
+											<xs:element name="Amount"
+													type="xs:float"
+													minOccurs="0"/>
+											<xs:element name="VAT_Rate"
+													type="xs:string"
+													minOccurs="0"/>
+											<xs:element name="VAT_Amount"
+													type="xs:float"
+													minOccurs="0"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="Services"
+							minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="row"
+										nillable="true"
+										minOccurs="0"
+										maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="ProductId"
+													type="xs:string"/>
+											<xs:element name="ProductName"
+													type="xs:string"
+													nillable="true"
+													minOccurs="0"/>
+											<xs:element name="CharacteristicId"
+													type="xs:string"
+													nillable="true"
+													minOccurs="0"/>
+											<xs:element name="CharacteristicName"
+													type="xs:string"
+													nillable="true"
+													minOccurs="0"/>
+											<xs:element name="Content"
+													type="xs:string"/>
+											<xs:element name="Unit"
+													type="xs:string"
+													minOccurs="0"/>
+											<xs:element name="Quantity"
+													type="xs:float"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="Partner">
+				<xs:sequence>
+					<xs:element name="Name"
+							type="xs:string"/>
+					<xs:element name="UID"
+							type="xs:string"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ProductPrice">
+				<xs:sequence>
+					<xs:element name="ProductId"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="Name"
+							type="xs:string"/>
+					<xs:element name="Article"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Brand"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="BrandId"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="CharacteristicId"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="CharacteristicName"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Unit"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="Price"
+							type="xs:float"
+							minOccurs="0"/>
+					<xs:element name="Balance"
+							type="xs:float"
+							minOccurs="0"/>
+					<xs:element name="Group"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="GroupId"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="SupplierBalance"
+							type="xs:float"
+							minOccurs="0"/>
+					<xs:element name="OrderExecutionTime"
+							type="xs:date"
+							minOccurs="0"/>
+					<xs:element name="DeletionMark"
+							type="xs:boolean"/>
+					<xs:element name="MinimumBalance"
+							type="xs:float"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ProductFilter">
+				<xs:choice>
+					<xs:element name="Brands"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="Groups"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="Products"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+				</xs:choice>
+			</xs:complexType>
+			<xs:complexType name="ProductGroupInfo">
+				<xs:sequence>
+					<xs:element name="Name"
+							type="xs:string"/>
+					<xs:element name="GroupId"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="ParentId"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Level"
+							type="xs:integer"
+							minOccurs="0"/>
+					<xs:element name="IndexNumber"
+							type="xs:integer"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ProductInfo">
+				<xs:sequence>
+					<xs:element name="ProductId"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="DeletionMark"
+							type="xs:boolean"/>
+					<xs:element name="Article"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Brand"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="BrandId"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="ShortName"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="Name"
+							type="xs:string"
+							nillable="true"/>
+					<xs:element name="CharacteristicId"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="CharacteristicName"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Unit"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="GTD"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Weight"
+							type="xs:float"
+							minOccurs="0"/>
+					<xs:element name="Volume"
+							type="xs:float"
+							minOccurs="0"/>
+					<xs:element name="Value"
+							type="xs:float"
+							minOccurs="0"/>
+					<xs:element name="Group"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="GroupId"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Multiplicity"
+							type="xs:float"
+							minOccurs="0"/>
+					<xs:element name="MinimalPackage"
+							type="xs:float"
+							minOccurs="0"/>
+					<xs:element name="Country"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="SuppliersMRP"
+							type="xs:float"
+							minOccurs="0"/>
+					<xs:element name="Class"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="Description"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Features"
+							type="tns:Feature"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="Analogs"
+							type="tns:Analog"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="Images"
+							type="xs:string"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="Barcode"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="CuttingProduct"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="ExternalName"
+							type="xs:string"
+							nillable="true"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ProductsToOrder">
+				<xs:sequence>
+					<xs:element name="ProductId"
+							type="xs:string"/>
+					<xs:element name="CharacteristicId"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Quantity"
+							type="xs:float"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ReconciliationActFilter">
+				<xs:sequence>
+					<xs:element name="StartDate"
+							type="xs:dateTime"
+							minOccurs="0"/>
+					<xs:element name="EndDate"
+							type="xs:dateTime"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ReconciliationActInfo">
+				<xs:sequence>
+					<xs:element name="Partner"
+							type="tns:Partner"/>
+					<xs:element name="InitialBalance"
+							type="xs:float"
+							minOccurs="0"/>
+					<xs:element name="FinalBalance"
+							type="xs:float"
+							minOccurs="0"/>
+					<xs:element name="Contracts"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Contract"
+										type="tns:Contract"
+										minOccurs="0"/>
+								<xs:element name="OverdueDebt"
+										type="xs:float"
+										minOccurs="0"/>
+								<xs:element name="InitialBalanceContract"
+										type="xs:float"
+										minOccurs="0"/>
+								<xs:element name="FinalBalanceContract"
+										type="xs:float"
+										minOccurs="0"/>
+								<xs:element name="Records"
+										minOccurs="0"
+										maxOccurs="unbounded">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="Date"
+													type="xs:dateTime"
+													minOccurs="0"/>
+											<xs:element name="Document"
+													type="xs:string"
+													minOccurs="0"/>
+											<xs:element name="DocumentId"
+													type="xs:string"
+													nillable="true"
+													minOccurs="0"/>
+											<xs:element name="Debet"
+													type="xs:float"
+													minOccurs="0"/>
+											<xs:element name="Credit"
+													type="xs:float"
+													minOccurs="0"/>
+											<xs:element name="Balance"
+													type="xs:float"
+													minOccurs="0"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:complexType name="ReservesReport">
+				<xs:choice>
+					<xs:element name="Records"
+							minOccurs="0"
+							maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:choice>
+								<xs:element name="Date"
+										type="xs:dateTime"
+										minOccurs="0"/>
+								<xs:element name="Document"
+										type="xs:string"
+										minOccurs="0"/>
+								<xs:element name="DocumentId"
+										type="xs:string"
+										nillable="true"
+										minOccurs="0"/>
+								<xs:element name="ProductName"
+										type="xs:string"
+										minOccurs="0"/>
+								<xs:element name="ProductId"
+										type="xs:string"
+										minOccurs="0"/>
+								<xs:element name="Quantity"
+										type="xs:float"
+										minOccurs="0"/>
+							</xs:choice>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+			</xs:complexType>
+			<xs:complexType name="Response"
+					mixed="true">
+				<xs:choice>
+					<xs:element name="Error"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="Objects"
+							minOccurs="0"
+							maxOccurs="unbounded"/>
+					<xs:element name="LastObject"
+							minOccurs="0"/>
+				</xs:choice>
+			</xs:complexType>
+			<xs:complexType name="DocumentStatuses">
+				<xs:choice>
+					<xs:element name="Statuses"
+							nillable="true"
+							minOccurs="0"
+							maxOccurs="unbounded">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Status"
+										type="xs:string"
+										minOccurs="0"/>
+								<xs:element name="Data"
+										type="xs:dateTime"
+										minOccurs="0"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="DeliveryDate"
+							type="xs:dateTime"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Driver"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="DriverPhoneNumber"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+				</xs:choice>
+			</xs:complexType>
+			<xs:complexType name="PriceRRP">
+				<xs:sequence>
+					<xs:element name="ProductId"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="Name"
+							type="xs:string"/>
+					<xs:element name="Article"
+							type="xs:string"
+							nillable="true"
+							minOccurs="0"/>
+					<xs:element name="Unit"
+							type="xs:string"
+							minOccurs="0"/>
+					<xs:element name="Price"
+							type="xs:float"
+							minOccurs="0"/>
+				</xs:sequence>
+			</xs:complexType>
+			<xs:element name="Test">
+				<xs:complexType>
+					<xs:sequence/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="TestResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductsGroupHierarchy">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="APIKey"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductsGroupHierarchyResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Brands">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="APIKey"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="BrandsResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductsInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="APIKey"
+								type="xs:string"/>
+						<xs:element name="Filter"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="PreviousProduct"
+								type="xs:string"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ProductsInfoResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PriceList">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="APIKey"
+								type="xs:string"/>
+						<xs:element name="Filter"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="PreviousProduct"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="OnlyPrice"
+								type="xs:boolean"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="PriceListResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetSalesDocumentsInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="APIKey"
+								type="xs:string"/>
+						<xs:element name="Filter"
+								type="xs:string"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetSalesDocumentsInfoResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreateOrderDocument">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="APIKey"
+								type="xs:string"/>
+						<xs:element name="Filter"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="CreateOrderDocumentResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetOrderDocument">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="APIKey"
+								type="xs:string"/>
+						<xs:element name="Filter"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetOrderDocumentResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ChangeOrderDocument">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="APIKey"
+								type="xs:string"/>
+						<xs:element name="Filter"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ChangeOrderDocumentResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetAddressInfo">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="APIKey"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetAddressInfoResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReconciliationAct">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="APIKey"
+								type="xs:string"/>
+						<xs:element name="Filter"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="ReconciliationActResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetPriceRRP">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="APIKey"
+								type="xs:string"/>
+						<xs:element name="Filter"
+								type="xs:string"
+								nillable="true"/>
+						<xs:element name="PreviousProduct"
+								type="xs:string"
+								nillable="true"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GetPriceRRPResponse">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="return"
+								type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:schema>
+	</types>
+	<message name="TestRequestMessage">
+		<part name="parameters"
+				element="tns:Test"/>
+	</message>
+	<message name="TestResponseMessage">
+		<part name="parameters"
+				element="tns:TestResponse"/>
+	</message>
+	<message name="ProductsGroupHierarchyRequestMessage">
+		<part name="parameters"
+				element="tns:ProductsGroupHierarchy"/>
+	</message>
+	<message name="ProductsGroupHierarchyResponseMessage">
+		<part name="parameters"
+				element="tns:ProductsGroupHierarchyResponse"/>
+	</message>
+	<message name="BrandsRequestMessage">
+		<part name="parameters"
+				element="tns:Brands"/>
+	</message>
+	<message name="BrandsResponseMessage">
+		<part name="parameters"
+				element="tns:BrandsResponse"/>
+	</message>
+	<message name="ProductsInfoRequestMessage">
+		<part name="parameters"
+				element="tns:ProductsInfo"/>
+	</message>
+	<message name="ProductsInfoResponseMessage">
+		<part name="parameters"
+				element="tns:ProductsInfoResponse"/>
+	</message>
+	<message name="PriceListRequestMessage">
+		<part name="parameters"
+				element="tns:PriceList"/>
+	</message>
+	<message name="PriceListResponseMessage">
+		<part name="parameters"
+				element="tns:PriceListResponse"/>
+	</message>
+	<message name="GetSalesDocumentsInfoRequestMessage">
+		<part name="parameters"
+				element="tns:GetSalesDocumentsInfo"/>
+	</message>
+	<message name="GetSalesDocumentsInfoResponseMessage">
+		<part name="parameters"
+				element="tns:GetSalesDocumentsInfoResponse"/>
+	</message>
+	<message name="CreateOrderDocumentRequestMessage">
+		<part name="parameters"
+				element="tns:CreateOrderDocument"/>
+	</message>
+	<message name="CreateOrderDocumentResponseMessage">
+		<part name="parameters"
+				element="tns:CreateOrderDocumentResponse"/>
+	</message>
+	<message name="GetOrderDocumentRequestMessage">
+		<part name="parameters"
+				element="tns:GetOrderDocument"/>
+	</message>
+	<message name="GetOrderDocumentResponseMessage">
+		<part name="parameters"
+				element="tns:GetOrderDocumentResponse"/>
+	</message>
+	<message name="ChangeOrderDocumentRequestMessage">
+		<part name="parameters"
+				element="tns:ChangeOrderDocument"/>
+	</message>
+	<message name="ChangeOrderDocumentResponseMessage">
+		<part name="parameters"
+				element="tns:ChangeOrderDocumentResponse"/>
+	</message>
+	<message name="GetAddressInfoRequestMessage">
+		<part name="parameters"
+				element="tns:GetAddressInfo"/>
+	</message>
+	<message name="GetAddressInfoResponseMessage">
+		<part name="parameters"
+				element="tns:GetAddressInfoResponse"/>
+	</message>
+	<message name="ReconciliationActRequestMessage">
+		<part name="parameters"
+				element="tns:ReconciliationAct"/>
+	</message>
+	<message name="ReconciliationActResponseMessage">
+		<part name="parameters"
+				element="tns:ReconciliationActResponse"/>
+	</message>
+	<message name="GetPriceRRPRequestMessage">
+		<part name="parameters"
+				element="tns:GetPriceRRP"/>
+	</message>
+	<message name="GetPriceRRPResponseMessage">
+		<part name="parameters"
+				element="tns:GetPriceRRPResponse"/>
+	</message>
+	<portType name="ToledoAPIPortType">
+		<operation name="Test">
+			<input message="tns:TestRequestMessage"/>
+			<output message="tns:TestResponseMessage"/>
+		</operation>
+		<operation name="ProductsGroupHierarchy">
+			<input message="tns:ProductsGroupHierarchyRequestMessage"/>
+			<output message="tns:ProductsGroupHierarchyResponseMessage"/>
+		</operation>
+		<operation name="Brands">
+			<input message="tns:BrandsRequestMessage"/>
+			<output message="tns:BrandsResponseMessage"/>
+		</operation>
+		<operation name="ProductsInfo">
+			<input message="tns:ProductsInfoRequestMessage"/>
+			<output message="tns:ProductsInfoResponseMessage"/>
+		</operation>
+		<operation name="PriceList">
+			<input message="tns:PriceListRequestMessage"/>
+			<output message="tns:PriceListResponseMessage"/>
+		</operation>
+		<operation name="GetSalesDocumentsInfo">
+			<input message="tns:GetSalesDocumentsInfoRequestMessage"/>
+			<output message="tns:GetSalesDocumentsInfoResponseMessage"/>
+		</operation>
+		<operation name="CreateOrderDocument">
+			<input message="tns:CreateOrderDocumentRequestMessage"/>
+			<output message="tns:CreateOrderDocumentResponseMessage"/>
+		</operation>
+		<operation name="GetOrderDocument">
+			<input message="tns:GetOrderDocumentRequestMessage"/>
+			<output message="tns:GetOrderDocumentResponseMessage"/>
+		</operation>
+		<operation name="ChangeOrderDocument">
+			<input message="tns:ChangeOrderDocumentRequestMessage"/>
+			<output message="tns:ChangeOrderDocumentResponseMessage"/>
+		</operation>
+		<operation name="GetAddressInfo">
+			<input message="tns:GetAddressInfoRequestMessage"/>
+			<output message="tns:GetAddressInfoResponseMessage"/>
+		</operation>
+		<operation name="ReconciliationAct">
+			<input message="tns:ReconciliationActRequestMessage"/>
+			<output message="tns:ReconciliationActResponseMessage"/>
+		</operation>
+		<operation name="GetPriceRRP">
+			<input message="tns:GetPriceRRPRequestMessage"/>
+			<output message="tns:GetPriceRRPResponseMessage"/>
+		</operation>
+	</portType>
+	<binding name="ToledoAPISoapBinding"
+			type="tns:ToledoAPIPortType">
+		<soapbind:binding style="document"
+				transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="Test">
+			<soapbind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:Test"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ProductsGroupHierarchy">
+			<soapbind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:ProductsGroupHierarchy"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="Brands">
+			<soapbind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:Brands"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ProductsInfo">
+			<soapbind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:ProductsInfo"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="PriceList">
+			<soapbind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:PriceList"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetSalesDocumentsInfo">
+			<soapbind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:GetSalesDocumentsInfo"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="CreateOrderDocument">
+			<soapbind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:CreateOrderDocument"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetOrderDocument">
+			<soapbind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:GetOrderDocument"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ChangeOrderDocument">
+			<soapbind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:ChangeOrderDocument"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetAddressInfo">
+			<soapbind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:GetAddressInfo"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ReconciliationAct">
+			<soapbind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:ReconciliationAct"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetPriceRRP">
+			<soapbind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:GetPriceRRP"/>
+			<input>
+				<soapbind:body use="literal"/>
+			</input>
+			<output>
+				<soapbind:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<binding name="ToledoAPISoap12Binding"
+			type="tns:ToledoAPIPortType">
+		<soap12bind:binding style="document"
+				transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="Test">
+			<soap12bind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:Test"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ProductsGroupHierarchy">
+			<soap12bind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:ProductsGroupHierarchy"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="Brands">
+			<soap12bind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:Brands"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ProductsInfo">
+			<soap12bind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:ProductsInfo"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="PriceList">
+			<soap12bind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:PriceList"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetSalesDocumentsInfo">
+			<soap12bind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:GetSalesDocumentsInfo"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="CreateOrderDocument">
+			<soap12bind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:CreateOrderDocument"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetOrderDocument">
+			<soap12bind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:GetOrderDocument"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ChangeOrderDocument">
+			<soap12bind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:ChangeOrderDocument"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetAddressInfo">
+			<soap12bind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:GetAddressInfo"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="ReconciliationAct">
+			<soap12bind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:ReconciliationAct"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+		<operation name="GetPriceRRP">
+			<soap12bind:operation style="document"
+					soapAction="http://www.toledo24.ru/webservices/ToledoAPI#ToledoAPI:GetPriceRRP"/>
+			<input>
+				<soap12bind:body use="literal"/>
+			</input>
+			<output>
+				<soap12bind:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="ToledoAPI">
+		<port name="ToledoAPISoap"
+				binding="tns:ToledoAPISoapBinding">
+			<documentation> 
+				<wsi:Claim xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/"
+						conformsTo="http://ws-i.org/profiles/basic/1.1"/>
+			</documentation>
+			<soapbind:address location="http://api-ka.toledo24.ru/ka/ws/ToledoAPI"/>
+		</port>
+		<port name="ToledoAPISoap12"
+				binding="tns:ToledoAPISoap12Binding">
+			<soap12bind:address location="http://api-ka.toledo24.ru/ka/ws/ToledoAPI"/>
+		</port>
+	</service>
+</definitions>
