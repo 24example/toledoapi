@@ -11,7 +11,9 @@ go get -u github.com/24example/toledoapi
 ## Доступные методы
 
 > GetBrands - получение списка производителей
+
 > GetProducts - получение списка продуктов
+
 > GetProductPrices - получение списка цен
 
 ## Пример использования
