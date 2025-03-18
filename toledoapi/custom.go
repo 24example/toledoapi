@@ -7,8 +7,9 @@ type Object[T any] struct {
 }
 
 type ObjectList[T any] struct {
-	Response
-	Objects []Object[T] `xml:"Objects" json:"Objects"`
+	Error      *string         `xml:"Error" json:"Error"`
+	LastObject *Object[string] `xml:"LastObject,omitempty" json:"LastObject,omitempty"`
+	Objects    []Object[T]     `xml:"Objects" json:"Objects"`
 }
 
 type ResponseObjects[T any] struct {

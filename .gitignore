@@ -23,3 +23,5 @@ sidekick.yml
 store.bleve/
 
 docs/
+
+main.go
